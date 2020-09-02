@@ -15,6 +15,31 @@
   </a>
 </p>
 
+<h3 align="center"> 
+	🚀 General Operation 🚀
+</h3>
+<h4 align="center">
+	  <img alt="edit" title="#python-excel" src="./assets/python-excel.gif" style="max-width: 100%;">
+</h4>
+
+---
+
+<h3 align="center"> 
+	🚀 Extracting the main parameters for analysis 🚀
+</h3>
+<h4 align="center">
+	  <img alt="edit" title="#python-excel" src="./assets/python-excel-main.gif" style="max-width: 100%;">
+</h4>
+
+---
+<h3 align="center"> 
+	🚀 Convert data to Printed version 🚀
+</h3>
+<h4 align="center">
+	  <img alt="edit" title="#python-excel-print" src="./assets/python-excel-print.gif" style="max-width: 100%;">
+</h4>
+</br>
+</br>
 <h2 align="center"> 
 	🚧 Working .xlsx data with Python 🚀 In progress... 🚀 🚧
 </h2>
