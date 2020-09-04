@@ -16,10 +16,10 @@
 </p>
 
 <h3 align="center"> 
-	🚀 General Operation 🚀
+	🚀 Organization by "Nota" inline 🚀
 </h3>
 <h4 align="center">
-	  <img alt="edit" title="#python-excel" src="./assets/python-excel.gif" style="max-width: 100%;">
+	  <img alt="edit" title="#python-excel" src="./assets/python-excel-inline.gif" style="max-width: 100%;">
 </h4>
 
 ---
