@@ -219,4 +219,21 @@ loading1.save(excel_file_inline)
 df = pd.read_excel(excel_file_inline)
 df['Texto das medidas'].replace('', np.nan, inplace=True)
 df.dropna(subset=['Texto das medidas'], inplace=True)
+df.rename(columns={
+    'Unnamed: 6': 'Tipo NF',
+    'Unnamed: 7': 'Emissão NF',
+    'Unnamed: 8': 'Retorno NF',
+    'Unnamed: 9': 'Conhecimento',
+    'Unnamed: 10': 'Valor',
+    'Unnamed: 11': 'Conhecimento',
+    'Unnamed: 12': 'Relatório',
+    'Unnamed: 13': 'Conhecimento',
+    'Unnamed: 14': 'Material',
+    'Unnamed: 15': 'Avaliar',
+    'Unnamed: 16': '',
+    'Unnamed: 17': '',
+    'Unnamed: 18': '',
+    'Unnamed: 19': '',
+}, inplace=True)
+
 df.to_excel(excel_file_inline)
