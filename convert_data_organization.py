@@ -4,145 +4,146 @@ from utils import findEvenText, writeExcel
 excel_file = 'C:/Users/thiag/Desktop/Atlas/DADOS.xlsx'
 df1 = pd.read_excel(excel_file, 'QM12')
 
-nome_fornecedor = []
-material_conserto = []
+provider_name = []
+material_service = []
 
-nf_conserto = []
-nf_garantia = []
-NFs = []
+nf_service = []
+nf_guarantee = []
+nfs = []
 
-sem_defeito = []
-material_aprovado = []
-material_avariado = []
-material_defeito = []
-material_lacre_rompido = []
-material_importado = []
-valor = []
-valor_garantia = []
-valor_sucatado = []
-valor_conserto = []
+flawless = []
+approved = []
+damaged = []
+damaged_material = []
+broken_seal_material = []
+imported_material = []
+values_list = []
+value_guarantee = []
+value_wasted = []
+value_service = []
 
 qm = []
 
-conserto_contador = 0
-linha = 0
-filtro_sem_defeito = 0
+service_count = 0
+row = 0
+filtro_flawless = 0
 y = 0
 
 # Importing data from excel
 for i in df1['Texto de code medida']:
     if i == 'Enviar para concerto externo':
-        nome_fornecedor.append(df1.loc[y, 'Texto das medidas'])
-        material_conserto.append(df1.loc[y, 'Material'])
-        conserto_contador += 1
+        provider_name.append(df1.loc[y, 'Texto das medidas'])
+        material_service.append(df1.loc[y, 'Material'])
+        service_count += 1
 
     if i == 'Emitir Nota Fiscal':
         if df1.loc[y, 'Texto das medidas'] == 'NF PARA CONSERTO':
-            nf_conserto.append(df1.loc[y, 'Texto das medidas'])
+            nf_service.append(df1.loc[y, 'Texto das medidas'])
         if df1.loc[y, 'Texto das medidas'] == 'NF EM GARANTIA':
-            nf_garantia.append(df1.loc[y, 'Texto das medidas'])
-        linha += 1
+            nf_guarantee.append(df1.loc[y, 'Texto das medidas'])
+        row += 1
     y += 1
 y = 0
 
 for i in df1['Texto das medidas']:
     df1_material = df1.loc[y, 'Material']
     if i == 'MATERIAL SEM DEFEITO':
-        sem_defeito.append(df1_material)
+        flawless.append(df1_material)
     if i == 'SEM DEFEITO':
-        sem_defeito.append(df1_material)
+        flawless.append(df1_material)
     if i == 'MATERIAL APROVADO':
-        material_aprovado.append(df1_material)
+        approved.append(df1_material)
     if i == 'MATERIAL AVARIADO':
-        material_avariado.append(df1_material)
+        damaged.append(df1_material)
     if i == 'MATERIAL COM DEFEITO':
-        material_defeito.append(df1_material)
+        damaged_material.append(df1_material)
     if i == 'MATERIAL COM DEFEITO':
-        material_defeito.append(df1_material)
+        damaged_material.append(df1_material)
     if i == 'MATERIAL COM LACRE ROMPIDO':
-        material_lacre_rompido.append(df1_material)
+        broken_seal_material.append(df1_material)
     if i == 'MATERIAL IMPORTADO':
-        material_importado.append(df1_material)
+        imported_material.append(df1_material)
     try:
         if (i.startswith('VALOR')) is True:
-            valor.append(i)
+            values_list.append(i)
     except:
         continue
     y += 1
 y = 0
 
-fornecedorOrdenado = findEvenText(nome_fornecedor)
-fornecedorOrdenado.insert(
+provider_in_order = findEvenText(provider_name)
+provider_in_order.insert(
     0, ('NOME DO FORNECEDOR', 'QUANTIDADE DE MATERIAIS ENVIADOS'))
 
-materiaisEnviadosConserto = findEvenText(material_conserto)
-materiaisEnviadosConserto.insert(
+send_servive_material = findEvenText(material_service)
+send_servive_material.insert(
     0, ('MATERIAL ENVIADO PARA CONSERTO EXTERNO', 'QUANTIDADE'))
 
-nfConserto = len(nf_conserto)
-nfGarantia = len(nf_garantia)
-NFs.append(
-    ['Quantidade de materiais enviados para conserto externo', conserto_contador])
-NFs.append(['Total de NFs geradas', len(nf_conserto+nf_garantia)])
-NFs.append(['NFs em espera', conserto_contador - len(nf_conserto+nf_garantia)])
-NFs.append(['Quantidade de NFs de CONSERTO', nfConserto])
-NFs.append(['Quantidade de NFs de GARANTIA', nfGarantia])
+nf_service_total = len(nf_service)
+nf_guarantee_total = len(nf_guarantee)
+nfs.append(
+    ['Quantidade de materiais enviados para service externo', service_count])
+nfs.append(['Total de nfs geradas', len(nf_service+nf_guarantee)])
+nfs.append(['nfs em espera', service_count - len(nf_service+nf_guarantee)])
+nfs.append(['Quantidade de nfs de CONSERTO', nf_service_total])
+nfs.append(['Quantidade de nfs de GARANTIA', nf_guarantee_total])
 
-materiaisSemDefeito = findEvenText(sem_defeito)
-materiaisSemDefeito.insert(0, ('MATERIAL SEM DEFEITO', 'QUANTIDADE'))
+flawless_material_total = findEvenText(flawless)
+flawless_material_total.insert(0, ('MATERIAL SEM DEFEITO', 'QUANTIDADE'))
 
-materialAprovado = findEvenText(material_aprovado)
-materialAprovado.insert(0, ('MATERIAL APROVADO', 'QUANTIDADE'))
+approved_material_total = findEvenText(approved)
+approved_material_total.insert(0, ('MATERIAL APROVADO', 'QUANTIDADE'))
 
-materialAvariado = findEvenText(material_avariado)
-materialAvariado.insert(0, ('MATERIAL AVARIADO', 'QUANTIDADE'))
+wasted_material_total = findEvenText(damaged)
+wasted_material_total.insert(0, ('MATERIAL AVARIADO', 'QUANTIDADE'))
 
-materialDefeito = findEvenText(material_defeito)
-materialDefeito.insert(0, ('MATERIAL DEFEITO', 'QUANTIDADE'))
+damaged_material_total = findEvenText(damaged_material)
+damaged_material_total.insert(0, ('MATERIAL DEFEITO', 'QUANTIDADE'))
 
-materialLacreRompido = findEvenText(material_lacre_rompido)
-materialLacreRompido.insert(0, ('MATERIAL COM LACRE ROMPIDO', 'QUANTIDADE'))
+broken_seal_material_total = findEvenText(broken_seal_material)
+broken_seal_material_total.insert(
+    0, ('MATERIAL COM LACRE ROMPIDO', 'QUANTIDADE'))
 
-materialImportado = findEvenText(material_importado)
-materialImportado.insert(0, ('MATERIAL IMPORTADO', 'QUANTIDADE'))
+imported_material_total = findEvenText(imported_material)
+imported_material_total.insert(0, ('MATERIAL IMPORTADO', 'QUANTIDADE'))
 
-valorTotal = findEvenText(valor)
-valorTotal.insert(0, ('TODOS VALORES', 'QUANTIDADE'))
+value_total = findEvenText(values_list)
+value_total.insert(0, ('TODOS VALORES', 'QUANTIDADE'))
 
-for i in valor:
-    if (i.endswith('EM GARANTIA')) is True:
-        valor_garantia.append(i)
-valorGarantia = findEvenText(valor_garantia)
-valorGarantia.insert(0, ('VALOR EM GARANTIA', 'QUANTIDADE'))
+for value in values_list:
+    if (value.endswith('EM GARANTIA')) is True:
+        value_guarantee.append(value)
+value_guarantee_total = findEvenText(value_guarantee)
+value_guarantee_total.insert(0, ('VALOR EM GARANTIA', 'QUANTIDADE'))
 
-for i in valor:
-    if (i.endswith('SUCATADO')) is True:
-        valor_sucatado.append(i)
-valorSucatado = findEvenText(valor_sucatado)
-valorSucatado.insert(0, ('VALOR EM SUCATA', 'QUANTIDADE'))
+for value in values_list:
+    if (value.endswith('SUCATADO')) is True:
+        value_wasted.append(value)
+value_wasted_total = findEvenText(value_wasted)
+value_wasted_total.insert(0, ('VALOR EM SUCATA', 'QUANTIDADE'))
 
-for i in valor:
-    if (i.endswith('DE CONSERTO')) is True:
-        valor_conserto.append(i)
-valorConserto = findEvenText(valor_conserto)
-valorConserto.insert(0, ('VALOR EM CONSERTO', 'QUANTIDADE'))
+for value in values_list:
+    if (value.endswith('DE CONSERTO')) is True:
+        value_service.append(value)
+value_service_total = findEvenText(value_service)
+value_service_total.insert(0, ('VALOR EM CONSERTO', 'QUANTIDADE'))
 
-for i in df1['Nota']:
-    qm.append(i)
-qmQuant = findEvenText(qm)
-qmQuant.insert(0, ('QM', 'QUANTIDADE'))
+for note in df1['Nota']:
+    qm.append(note)
+qm_total = findEvenText(qm)
+qm_total.insert(0, ('QM', 'QUANTIDADE'))
 
-writeExcel(materiaisEnviadosConserto)
-writeExcel(fornecedorOrdenado)
-writeExcel(NFs)
-writeExcel(materiaisSemDefeito)
-writeExcel(materialAprovado)
-writeExcel(materialAvariado)
-writeExcel(materialDefeito)
-writeExcel(materialLacreRompido)
-writeExcel(materialImportado)
-writeExcel(valorTotal)
-writeExcel(valorGarantia)
-writeExcel(valorSucatado)
-writeExcel(valorConserto)
-writeExcel(qmQuant)
+writeExcel(send_servive_material)
+writeExcel(provider_in_order)
+writeExcel(nfs)
+writeExcel(flawless_material_total)
+writeExcel(approved_material_total)
+writeExcel(wasted_material_total)
+writeExcel(damaged_material_total)
+writeExcel(broken_seal_material_total)
+writeExcel(imported_material_total)
+writeExcel(value_total)
+writeExcel(value_guarantee_total)
+writeExcel(value_wasted_total)
+writeExcel(value_service_total)
+writeExcel(qm_total)
