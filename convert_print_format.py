@@ -21,13 +21,13 @@ def formating():
 
     for i in range(2, 100, 1):
         if (i % 2) != 0:
-            textoCodeMedida = 'E'+str(i)
-            la.move_range(textoCodeMedida, rows=-1, cols=2)
-            textoMedidas = 'G'+str(i)
-            la.move_range(textoMedidas, rows=-1, cols=1)
+            measure_code_text = 'E'+str(i)
+            la.move_range(measure_code_text, rows=-1, cols=2)
+            measure_text = 'G'+str(i)
+            la.move_range(measure_text, rows=-1, cols=1)
         else:
-            textoMedidas = 'G'+str(i)
-            la.move_range(textoMedidas, rows=0, cols=-1)
+            measure_text = 'G'+str(i)
+            la.move_range(measure_text, rows=0, cols=-1)
 
     for j in range(3, 100, 1):
         la.delete_rows(j)
