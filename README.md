@@ -15,6 +15,11 @@
   </a>
 </p>
 
+<p align="center">
+  <img align="center" alt="with_love" src="https://forthebadge.com/images/badges/built-with-love.svg" />
+  <img align="center" alt="js" src="https://forthebadge.com/images/badges/made-with-python.svg" />
+<p>
+	
 <h3 align="center"> 
 	🚀 Organization by "Nota" inline 🚀
 </h3>
