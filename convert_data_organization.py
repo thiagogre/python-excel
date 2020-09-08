@@ -30,13 +30,12 @@ filtro_flawless = 0
 y = 0
 
 # Importing data from excel
-for i in df1['Texto de code medida']:
-    if i == 'Enviar para concerto externo':
+for measure_text_code in df1['Texto de code medida']:
+    if measure_text_code == 'Enviar para concerto externo':
         provider_name.append(df1.loc[y, 'Texto das medidas'])
         material_service.append(df1.loc[y, 'Material'])
         service_count += 1
-
-    if i == 'Emitir Nota Fiscal':
+    if measure_text_code == 'Emitir Nota Fiscal':
         if df1.loc[y, 'Texto das medidas'] == 'NF PARA CONSERTO':
             nf_service.append(df1.loc[y, 'Texto das medidas'])
         if df1.loc[y, 'Texto das medidas'] == 'NF EM GARANTIA':
@@ -45,27 +44,27 @@ for i in df1['Texto de code medida']:
     y += 1
 y = 0
 
-for i in df1['Texto das medidas']:
+for measure_text in df1['Texto das medidas']:
     df1_material = df1.loc[y, 'Material']
-    if i == 'MATERIAL SEM DEFEITO':
+    if measure_text == 'MATERIAL SEM DEFEITO':
         flawless.append(df1_material)
-    if i == 'SEM DEFEITO':
+    if measure_text == 'SEM DEFEITO':
         flawless.append(df1_material)
-    if i == 'MATERIAL APROVADO':
+    if measure_text == 'MATERIAL APROVADO':
         approved.append(df1_material)
-    if i == 'MATERIAL AVARIADO':
+    if measure_text == 'MATERIAL AVARIADO':
         damaged.append(df1_material)
-    if i == 'MATERIAL COM DEFEITO':
+    if measure_text == 'MATERIAL COM DEFEITO':
         damaged_material.append(df1_material)
-    if i == 'MATERIAL COM DEFEITO':
+    if measure_text == 'MATERIAL COM DEFEITO':
         damaged_material.append(df1_material)
-    if i == 'MATERIAL COM LACRE ROMPIDO':
+    if measure_text == 'MATERIAL COM LACRE ROMPIDO':
         broken_seal_material.append(df1_material)
-    if i == 'MATERIAL IMPORTADO':
+    if measure_text == 'MATERIAL IMPORTADO':
         imported_material.append(df1_material)
     try:
-        if (i.startswith('VALOR')) is True:
-            values_list.append(i)
+        if (measure_text.startswith('VALOR')) is True:
+            values_list.append(measure_text)
     except:
         continue
     y += 1

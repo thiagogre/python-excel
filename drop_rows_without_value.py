@@ -20,5 +20,14 @@ df1 = pd.read_excel(excel_file, 'Sheet1')
 df2 = pd.DataFrame(df1)
 empDfObj = pd.DataFrame(df1)
 modDf = empDfObj.dropna()
-byNoteDf = (modDf.set_index(['Nota', 'Material', 'Iníc.planj', 'Texto breve material','Texto das medidas','Texto de code medida']))
+byNoteDf = (modDf.set_index(
+    [
+     'Nota',
+     'Material',
+     'Iníc.planj',
+     'Texto breve material',
+     'Texto das medidas',
+     'Texto de code medida'
+    ]
+))
 byNoteDf.to_excel(excel_file)
