@@ -87,9 +87,7 @@ $ cd python-excel
 $ pip install
 
 # Install used modules
-$ pip install pandas
-$ pip install xlrd
-$ pip install openpyxl
+$ pip install -r requirements.txt
 
 # Change path of file and selectors searched in excel file.
 
